@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, output } from '@angular/core';
 import gsap from 'gsap';
 
 @Component({
@@ -13,6 +13,7 @@ export class Header implements AfterViewInit {
   @ViewChild('social', { static: false }) social!: ElementRef;
   @ViewChild('new', { static: false }) new!: ElementRef;
   menuOpen = false;
+  menuOpen$ = output<boolean>();
   tl!: gsap.core.Timeline;
 
   ngAfterViewInit(): void {
@@ -47,5 +48,10 @@ export class Header implements AfterViewInit {
   toggleMenu() {
     this.menuOpen ? this.tl.reverse() : this.tl.play();
     this.menuOpen = !this.menuOpen;
+    this.menuOpen$.emit(this.menuOpen)
+  }
+  teste(){
+    console.log(true);
+
   }
 }

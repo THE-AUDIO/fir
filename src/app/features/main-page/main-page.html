@@ -3,8 +3,8 @@
         <section id="un" class="h-screen w-full bg-black sticky top-0">
             <div class="absolute top-0 h-screen w-full bg-black/10 flex justify-end items-center flex-col">
                 <header class="w-full h-11/12 flex justify-start items-center flex-col mt-4">
-                    <nav class="w-1/4 h-[50px] bg-white">
-                        <app-header></app-header>
+                    <nav class=" w-1/2 xl:w-1/4 h-[50px] bg-white">
+                        <app-header (menuOpen$)="pausedScoll($event)"></app-header>
                     </nav>
                 </header>
                 <div class="w-1/2 h-1/12 flex justify-start items-center flex-col">

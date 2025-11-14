@@ -13,8 +13,10 @@ gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
   encapsulation: ViewEncapsulation.None, // <-- AJOUT ICI !
 })
 export class MainPage implements AfterViewInit {
+    smoother!: ScrollSmoother;
+
   initSmoother() {
-    let smoother = ScrollSmoother.create({
+    this.smoother = ScrollSmoother.create({
       wrapper: '#smooth-wrapper',
       content: '#smooth-content',
       smooth: 1,
@@ -34,6 +36,11 @@ export class MainPage implements AfterViewInit {
         scrub: 1,
       }
     });
+  }
+  pausedScoll(menuOpen: boolean){
+    console.log(menuOpen);
+    
+    this.smoother.paused(menuOpen)
   }
   ngAfterViewInit(): void {
     this.initSmoother();
