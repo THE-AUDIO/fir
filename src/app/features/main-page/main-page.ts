@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Header } from "../header/header";
+import { Header } from '../header/header';
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 @Component({
@@ -10,10 +10,10 @@ gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
   imports: [Header],
   templateUrl: './main-page.html',
   styleUrl: './main-page.css',
-  encapsulation: ViewEncapsulation.None, // <-- AJOUT ICI !
 })
 export class MainPage implements AfterViewInit {
-    smoother!: ScrollSmoother;
+  smoother!: ScrollSmoother;
+  @ViewChild('heroVideo') heroVideo!: ElementRef<HTMLVideoElement>;
 
   initSmoother() {
     this.smoother = ScrollSmoother.create({
@@ -24,27 +24,33 @@ export class MainPage implements AfterViewInit {
       smoothTouch: 0.1,
     });
   }
-  placeOnUpSection(id:string) {
+  placeOnUpSection(id: string) {
     gsap.to(`#${id}`, {
-      marginTop:"-20rem",
-      duration:.5,
-      ease:"power3",
-      scrollTrigger:{
-        trigger:`#${id}`,
-        start: "top 70%",
-        end: "+=600px",
+      marginTop: '-20rem',
+      duration: 0.5,
+      ease: 'power3',
+      scrollTrigger: {
+        trigger: `#${id}`,
+        start: 'top 70%',
+        end: '+=600px',
         scrub: 1,
-      }
+      },
     });
   }
-  pausedScoll(menuOpen: boolean){
+  pausedScoll(menuOpen: boolean) {
     console.log(menuOpen);
-    
-    this.smoother.paused(menuOpen)
+
+    this.smoother.paused(menuOpen);
   }
   ngAfterViewInit(): void {
     this.initSmoother();
-    this.placeOnUpSection("deux")
-    this.placeOnUpSection("trois")
+    setTimeout(() => {
+      this.heroVideo.nativeElement.muted = true;
+      this.heroVideo.nativeElement.play().catch((err) => {
+        console.log('Autoplay blocked:', err);
+      });
+    }, 200);
+    this.placeOnUpSection('deux');
+    this.placeOnUpSection('trois');
   }
 }
