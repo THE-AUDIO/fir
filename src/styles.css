@@ -11,3 +11,14 @@
     display: none !important; /* Chrome, Safari, Edge */
   }
 }
+@theme{
+    --color-black: #0f0f0f;
+    --color-white: #d5d5d5
+}
+
+.suse {
+  font-family: "SUSE", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}

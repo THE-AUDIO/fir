@@ -1,0 +1,35 @@
+<section class="w-full h-full flex justify-center items-center p-2">
+    <div class="name suse h-full  flex justify-start items-center w-5/6">
+        <span class="text-3xl  h-8 w-20 overflow-hidden relative">
+            <h2 class=" up text-black">FIR</h2>
+            <h2 class=" down text-black">FIR</h2>
+        </span>
+    </div>
+    <div class="menu w-1/6 h-full flex justify-center items-center">
+        <span (click)="toggleMenu()"
+            class="btn-menu w-20 h-10 relative flex justify-center items-center gap-2 flex-col cursor-pointer">
+            <span class="h-0.5 w-full bg-black trait-up"></span>
+            <span class="h-0.5 w-full bg-black trait-center" [ngClass]="{'w-0!':menuOpen}"></span>
+            <span class="h-0.5 w-full bg-black trait-down"></span>
+        </span>
+    </div>
+</section>
+
+<section #menu
+    class="absolute menu-elt w-1/4 bg-white top-[100px] origin-top  scale-y-0 opacity-0 h-2/3 flex justify-around items-center flex-col">
+    <ul class="p-4 space-y-2 text-black flex justify-center items-center flex-col">
+        <li>Campagnes</li>
+        <li>L’agence</li>
+        <li>Lab’influence</li>
+        <li>Clients</li>
+        <li>Awards</li>
+        <li>Contact</li>
+    </ul>
+    <div #social class="space-y-2 p-4 flex justify-center items-center flex-col text-xl">
+        <p class="l_social">Facebook</p>
+        <p class="l_social">Instagram</p>
+    </div>
+    <div  class="space-y-2 p-4 flex justify-center items-center flex-col text-xl font-bold">
+        <p #new class="underline cursor-pointer">What's news!!</p>
+    </div>
+</section>

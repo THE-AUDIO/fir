@@ -1,0 +1,92 @@
+.up,
+.down {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  transition: ease-in-out 350ms;
+  cursor: pointer;
+}
+.up {
+  top: -200%;
+}
+.down {
+  top: 50%;
+}
+span:hover .up {
+  top: 50%;
+}
+span:hover .down {
+  top: 200%;
+}
+.btn-menu {
+  transition: all ease-in-out 350ms;
+  will-change: contents;
+}
+.trait-down,
+.trait-up,
+.trait-center {
+  transition: ease-in-out 350ms;
+}
+
+.btn-menu:hover .trait-center {
+  width: 50%;
+}
+
+li {
+  text-transform: uppercase;
+  font-size: 2rem;
+  text-align: center; /* texte centré */
+  position: relative; /* nécessaire pour ::before/::after */
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Parenthèse gauche */
+li::before {
+  left: -15px;
+  content: '(';
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%); /* décale légèrement vers la gauche */
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Parenthèse droite */
+li::after {
+  right: -20px;
+  content: ')';
+  position: absolute;
+  top: 50%;
+  transform: translate(50%, -50%); /* décale légèrement vers la droite */
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Affichage au hover */
+li:hover::before,
+li:hover::after {
+  opacity: 1;
+  transform: translate(0, -50%); /* revient exactement au bord du texte */
+}
+.l_social {
+  cursor: pointer;
+}
+
+.l_social::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 50px; /* largeur fixe pour toutes les lignes */
+  height: 2px;
+  background-color: black;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+.l_social:hover::before {
+  transform: translateX(-50%) scaleX(1);
+}
