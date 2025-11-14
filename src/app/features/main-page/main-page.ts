@@ -21,7 +21,23 @@ export class MainPage implements AfterViewInit {
       smoothTouch: 0.1,
     });
   }
+  placeOnUpSection(id:string) {
+    gsap.to(`#${id}`, {
+      marginTop:"-20rem",
+      duration:.5,
+      ease:"power3",
+      scrollTrigger:{
+        trigger:`#${id}`,
+        start: "top 70%",
+        end: "+=800px",
+        scrub: 1,
+        markers:true
+      }
+    });
+  }
   ngAfterViewInit(): void {
     this.initSmoother();
+    this.placeOnUpSection("deux")
+    this.placeOnUpSection("trois")
   }
 }
