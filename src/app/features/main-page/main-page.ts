@@ -3,11 +3,12 @@ import { gsap } from 'gsap';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Header } from '../header/header';
+import { NgOptimizedImage } from '@angular/common';
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 @Component({
   selector: 'app-main-page',
-  imports: [Header],
+  imports: [Header, NgOptimizedImage],
   templateUrl: './main-page.html',
   styleUrl: './main-page.css',
 })
@@ -42,6 +43,15 @@ export class MainPage implements AfterViewInit {
 
     this.smoother.paused(menuOpen);
   }
+
+  sticky() {
+    ScrollTrigger.create({
+      trigger: '#deux',
+      start: 'top top',
+      end: '+=100%',
+      pin: '.sticky-content',
+    });
+  }
   ngAfterViewInit(): void {
     this.initSmoother();
     setTimeout(() => {
@@ -50,7 +60,8 @@ export class MainPage implements AfterViewInit {
         console.log('Autoplay blocked:', err);
       });
     }, 200);
-    this.placeOnUpSection('deux');
+    // this.placeOnUpSection('deux');
     this.placeOnUpSection('trois');
+    this.sticky()
   }
 }
